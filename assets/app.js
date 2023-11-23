@@ -9,6 +9,16 @@
 import './styles/app.scss';
 import 'bootstrap';
 import bsCustomFileInput from 'bs-custom-file-input';
-
+import $ from 'jquery';
 
 bsCustomFileInput.init();
+
+
+// or you can include specific pieces
+// require('bootstrap/js/dist/tooltip');
+// require('bootstrap/js/dist/popover');
+
+$(function() {
+console.log('hello');
+
+});
