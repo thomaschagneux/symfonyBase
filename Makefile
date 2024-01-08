@@ -38,5 +38,5 @@ db-create-and-grant:
 	php bin/console doctrine:schema:update --force
 	psql -h 127.0.0.1 -U app -d app -c "GRANT ALL PRIVILEGES ON DATABASE app TO app;"
 
-reset:
+drop:
 	php bin/console doctrine:database:drop --force
