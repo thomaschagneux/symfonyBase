@@ -39,4 +39,26 @@ db-create-and-grant:
 	psql -h 127.0.0.1 -U app -d app -c "GRANT ALL PRIVILEGES ON DATABASE app TO app;"
 
 drop:
+<<<<<<< Updated upstream
 	php bin/console doctrine:database:drop --force
+=======
+	$(console) d:d:d --force --if-exists
+
+migrate:
+	$(console) d:m:m --no-interaction
+
+reset:
+	$(c-c)
+	$(console) d:d:d --force --if-exists
+	$(console) d:d:c --if-not-exists
+	$(console) d:m:m --no-interaction
+
+phpstan:
+	vendor/bin/phpstan analyse
+
+controller:
+	$(console) make:controller
+
+crud:
+	$(console) make:crud
+>>>>>>> Stashed changes
