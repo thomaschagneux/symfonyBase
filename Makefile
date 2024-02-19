@@ -39,9 +39,6 @@ db-create-and-grant:
 	psql -h 127.0.0.1 -U app -d app -c "GRANT ALL PRIVILEGES ON DATABASE app TO app;"
 
 drop:
-<<<<<<< Updated upstream
-	php bin/console doctrine:database:drop --force
-=======
 	$(console) d:d:d --force --if-exists
 
 migrate:
@@ -61,4 +58,7 @@ controller:
 
 crud:
 	$(console) make:crud
->>>>>>> Stashed changes
+c-c:
+	$(console) c:c
+	$(console) c:w
+
