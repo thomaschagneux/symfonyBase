@@ -1,32 +1,32 @@
 # Makefile for Symfony project
 
 # Composer
-COMPOSER = $(shell command -v composer 2> /dev/null)
+composer = $(shell command -v composer 2> /dev/null)
 
 # Yarn
-YARN = $(shell command -v yarn 2> /dev/null)
+yarn = $(shell command -v yarn 2> /dev/null)
 
 # Symfony console
-CONSOLE = php bin/console
+console= php bin/console
 
 install: composer-install yarn-install db-create db-migrate ## Install dependencies, create the database, and run migrations
 
 composer-install:
-ifdef COMPOSER
-	$(COMPOSER) install
+ifdef composer
+	$(composer) install
 else
 	@echo "Composer is not installed. Please install Composer: https://getcomposer.org/"
 endif
 
 yarn-install:
-ifdef YARN
-	$(YARN) install
+ifdef yarn
+	$(yarn) install
 else
 	@echo "Yarn is not installed. Please install Yarn: https://yarnpkg.com/"
 endif
 
 db-migrate:
-	$(CONSOLE) doctrine:migrations:migrate --no-interaction
+	$(console) doctrine:migrations:migrate --no-interaction
 
 # Add more rules as needed
 
@@ -51,6 +51,7 @@ reset:
 	$(console) d:m:m --no-interaction
 
 phpstan:
+	$(c-c)
 	vendor/bin/phpstan analyse
 
 controller:
