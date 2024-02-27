@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New AppUser{% endblock %}
+
+{% block body %}
+
+    <h1>Create new AppUser</h1>
+
+    {{ include('app_user/_form.html.twig', {'button_label': 'Add'}) }}
+
+    <a href="{{ path('app_user_index') }}">back to list</a>
+
+{% endblock %}
