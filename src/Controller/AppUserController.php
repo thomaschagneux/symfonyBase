@@ -9,9 +9,10 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-
+#[Route('/admin')]
 class AppUserController extends AbstractController
 {
     #[Route('/app/user/', name: 'app_user_index', methods: ['GET'])]
@@ -23,22 +24,32 @@ class AppUserController extends AbstractController
     }
 
     #[Route('/app/user/add', name: 'app_user_add', methods: ['GET', 'POST'])]
-    public function add(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    public function add(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        UserPasswordHasherInterface $passwordHasher,
+    ): Response {
         $appUser = new AppUser();
         $form = $this->createForm(AppUserType::class, $appUser);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($appUser);
+            $data = $form->getData();
+
+            $password = $data->getPassword();
+            $hashedPassword = $passwordHasher->hashPassword($appUser, $password);
+
+            $hashedPassword = $data->setPassword($hashedPassword);
+
+            $entityManager->persist($data);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_user_index');
+        }
+        return $this->render('app_user/add.html.twig', [
+            'app_user' => $appUser,
+            'form' => $form->createView(),
+        ]);
     }
-    return $this->render('app_user/add.html.twig', [
-        'app_user' => $appUser,
-        'form' => $form->createView(),
-    ]);
-}
 
     #[Route('/app/user/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(AppUser $appUser): Response
