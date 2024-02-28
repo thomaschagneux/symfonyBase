@@ -63,3 +63,8 @@ c-c:
 	$(console) c:c
 	$(console) c:w
 
+up:
+	symfony server:start -d
+
+stop:
+	symfony server:stop
