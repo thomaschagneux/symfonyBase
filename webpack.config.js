@@ -8,6 +8,7 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 
 Encore
     .addStyleEntry('styles', './assets/styles/app.scss')
+    .addStyleEntry('admin-styles', './assets/styles/admin/admin.scss')
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path
@@ -23,6 +24,7 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('home', './assets/home.js')
+    .addEntry('admin-js', './assets/admin.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
