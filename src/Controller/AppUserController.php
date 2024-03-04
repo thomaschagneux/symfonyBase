@@ -18,7 +18,7 @@ class AppUserController extends AbstractController
     #[Route('/app/user/', name: 'app_user_index', methods: ['GET'])]
     public function index(AppUserRepository $appUserRepository): Response
     {
-        return $this->render('app_user/index.html.twig', [
+        return $this->render('admin/app_user/index.html.twig', [
             'app_users' => $appUserRepository->findAll(),
         ]);
     }
@@ -45,7 +45,7 @@ class AppUserController extends AbstractController
 
             return $this->redirectToRoute('app_user_index');
         }
-        return $this->render('app_user/add.html.twig', [
+        return $this->render('admin/app_user/add.html.twig', [
             'app_user' => $appUser,
             'form' => $form->createView(),
         ]);
@@ -54,7 +54,7 @@ class AppUserController extends AbstractController
     #[Route('/app/user/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(AppUser $appUser): Response
     {
-        return $this->render('app_user/show.html.twig', [
+        return $this->render('admin/app_user/show.html.twig', [
             'app_user' => $appUser,
         ]);
     }
@@ -71,7 +71,7 @@ class AppUserController extends AbstractController
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('app_user/edit.html.twig', [
+        return $this->render('admin/app_user/edit.html.twig', [
             'app_user' => $appUser,
             'form' => $form,
         ]);

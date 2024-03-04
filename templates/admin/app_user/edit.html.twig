@@ -1,12 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'base/base-admin.html.twig' %}
 
 {% block title %}Edit AppUser{% endblock %}
 
-{% block body %}
+{% block content %}
 
     <h1>Edit AppUser</h1>
 
-    {{ include('app_user/_form.html.twig', {'button_label': 'Edit'}) }}
+    {{ include('admin/app_user/_form.html.twig', {'button_label': 'Edit'}) }}
     
     <a href="{{ path('app_user_index') }}">back to list</a>
 

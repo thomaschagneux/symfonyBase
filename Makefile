@@ -64,7 +64,10 @@ c-c:
 	$(console) c:w
 
 up:
+	$(c-c)
 	symfony server:start -d
+	yarn encore dev --watch
+
 
 stop:
 	symfony server:stop
