@@ -68,6 +68,8 @@ up:
 	symfony server:start -d
 	yarn encore dev --watch
 
-
 stop:
 	symfony server:stop
+
+encore:
+	yarn encore dev --watch

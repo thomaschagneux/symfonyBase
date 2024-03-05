@@ -10,7 +10,6 @@ import './styles/admin/admin.scss';
 import $ from 'jquery';
 import 'bootstrap';
 import bsCustomFileInput from 'bs-custom-file-input';
-
 bsCustomFileInput.init();
 
 
